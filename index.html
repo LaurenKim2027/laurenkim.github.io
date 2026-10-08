@@ -1,0 +1,1156 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Lauren Kim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: agency case-study format. A work index of large media tiles; each project opens as its own page:
+   huge title, meta row, full-bleed media, narrative text, media pairs, then next-project links. Black/white chrome, color lives in the media. */
+:root{
+  --bg:#ffffff;
+  --fg:#0d0d0d;
+  --muted:#6b6b6b;
+  --line:#e2e2e2;
+  --chip:#f2f2f2;
+  --sans:"Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  /* project media colors (imagery: same in both themes) */
+  --chalet-a:#1f3d2b; --chalet-b:#cfe0c3;
+  --tarts-a:#e9c4b6;  --tarts-b:#7a2e2a;
+  --unm-a:#1d4fa3;    --unm-b:#f6c945;
+  --dn:#4e2a84; --dt:#990000;
+  --ws-a:#ff6b2c;     --ws-b:#1a1a1a;
+  --gutter:clamp(16px,3vw,40px);
+  --hl:#ffe45c; --hl-ink:#0d0d0d;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0d0d0d;--fg:#f4f4f4;--muted:#9a9a9a;--line:#262626;--chip:#1c1c1c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d0d0d;--fg:#f4f4f4;--muted:#9a9a9a;--line:#262626;--chip:#1c1c1c;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{padding-inline:var(--gutter);max-width:1600px;margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.muted{color:var(--muted)}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:14px}
+.logo{font-weight:800;font-stretch:110%;font-size:20px;text-decoration:none;letter-spacing:-.01em}
+.top nav{display:flex;gap:clamp(14px,2.5vw,28px);font-size:15px;font-weight:500}
+.top nav a{text-decoration:none}
+.top nav a:hover,.top nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:4px}
+
+/* Home */
+.intro{padding-block:clamp(56px,9vw,120px) clamp(32px,4vw,48px)}
+.intro h1{font-weight:800;font-stretch:90%;font-size:clamp(44px,8vw,128px);line-height:.95;letter-spacing:-.03em;max-width:14ch}
+.intro p{margin-top:28px;max-width:46ch;font-size:clamp(18px,1.8vw,22px);line-height:1.45}
+
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter);padding-bottom:clamp(64px,8vw,120px)}
+.tile{text-decoration:none;display:block;min-width:0}
+.tile .media{aspect-ratio:4/3}
+.tile h2{margin-top:16px;font-weight:700;font-size:clamp(22px,2.2vw,30px);letter-spacing:-.015em;line-height:1.1}
+.tile p{margin-top:6px;color:var(--muted);font-size:16px}
+.tile .media-inner{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.tile:hover .media-inner{transform:scale(1.03)}
+@media (max-width:720px){.grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.tile .media-inner{transition:none}.tile:hover .media-inner{transform:none}}
+
+.tile-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:16px}
+.tile-head h2{margin-top:0}
+.tile .since{white-space:nowrap;color:var(--muted)}
+.tenure{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--fg);border-bottom:1px solid var(--line)}
+.ten{display:flex;flex-direction:column;gap:2px;padding:24px 20px 24px 0;text-decoration:none;min-width:0}
+.ten + .ten{padding-left:20px;border-left:1px solid var(--line)}
+.ten .num{font-weight:800;font-stretch:85%;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.ten .unit{font-size:15px;font-weight:600;margin-bottom:14px}
+.ten .who{font-weight:600;font-size:16px;line-height:1.25}
+.ten:hover .who{text-decoration:underline;text-underline-offset:3px}
+.tenure-note{max-width:60ch;font-size:clamp(17px,1.6vw,20px);padding-block:24px clamp(48px,6vw,80px);color:var(--muted)}
+.tenure-note strong{color:var(--fg)}
+@media (max-width:820px){.tenure{grid-template-columns:repeat(2,minmax(0,1fr))}.ten:nth-child(3){padding-left:0;border-left:0}.ten:nth-child(n+3){border-top:1px solid var(--line)}}
+.roots-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
+.roots{padding:20px 22px;background:var(--chip);min-width:0}
+@media (max-width:620px){.roots-grid{grid-template-columns:1fr}}
+.strategy{border-top:1px solid var(--fg);padding-block:clamp(48px,7vw,104px)}
+.strategy-h{margin-top:16px;font-weight:800;font-stretch:88%;font-size:clamp(48px,9vw,148px);line-height:.9;letter-spacing:-.04em}
+.strategy-lede{margin-top:28px;max-width:52ch;font-size:clamp(20px,2.2vw,30px);line-height:1.35;font-weight:500;letter-spacing:-.01em}
+.principles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:clamp(36px,5vw,64px)}
+.principles > div{border-top:1px solid var(--line);padding-top:16px;min-width:0}
+.principles h3{font-size:20px;font-weight:700;line-height:1.2}
+.principles p{margin-top:8px;font-size:15.5px;color:var(--muted)}
+@media (max-width:900px){.principles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.principles{grid-template-columns:1fr}}
+.section-label{border-top:1px solid var(--fg);padding-block:16px 20px}
+.roots p{margin-top:8px;font-size:18px;font-weight:500;line-height:1.45}
+.me{display:grid;grid-template-columns:7fr 5fr;gap:clamp(28px,5vw,72px);align-items:end;padding-block:clamp(48px,8vw,112px) clamp(48px,6vw,88px)}
+.me > *{min-width:0}
+.me h1{margin-top:20px;font-weight:800;font-stretch:85%;font-size:clamp(52px,9vw,148px);line-height:.88;letter-spacing:-.045em}
+.me-lede{margin-top:28px;max-width:46ch;font-size:clamp(19px,1.9vw,24px);line-height:1.45}
+.me-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-block;padding:12px 22px;border:1px solid var(--fg);border-radius:999px;font-weight:600;font-size:15px;text-decoration:none}
+.btn.solid{background:var(--fg);color:var(--bg)}
+.btn:hover{background:var(--fg);color:var(--bg)}
+.me-photo{aspect-ratio:4/5;max-width:100%;position:relative;overflow:hidden;background:var(--chip)}
+.me-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+@media (max-width:820px){.me{grid-template-columns:1fr}.me-photo{aspect-ratio:1/1;max-width:360px}}
+.explore{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter);padding-bottom:clamp(48px,6vw,88px)}
+.ex{display:flex;flex-direction:column;gap:10px;padding:clamp(20px,2.4vw,32px);background:var(--chip);text-decoration:none;min-width:0;transition:background .25s,color .25s}
+.ex h2{font-weight:800;font-stretch:88%;font-size:clamp(40px,5vw,72px);line-height:.9;letter-spacing:-.035em}
+.ex p{font-size:16px;color:var(--muted);flex:1}
+.ex-go{font-weight:600;font-size:15px;margin-top:8px}
+.ex:hover{background:var(--fg);color:var(--bg)}
+.ex:hover .muted,.ex:hover p{color:var(--bg);opacity:.75}
+@media (max-width:820px){.explore{grid-template-columns:1fr}}
+.pillars.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pillars.three .pillar h3{font-size:clamp(30px,3.4vw,48px)}
+@media (max-width:900px){.pillars.three{grid-template-columns:1fr}}
+.sides{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter);margin-top:36px}
+.side{min-width:0;border-top:1px solid var(--fg);padding-top:16px}
+.side h3{margin-top:8px;font-weight:800;font-stretch:88%;font-size:clamp(30px,3.4vw,48px);line-height:.95;letter-spacing:-.03em}
+.side ul{list-style:none;margin:20px 0 0;padding:0}
+.side li{display:grid;gap:2px;padding-block:12px;border-bottom:1px solid var(--line)}
+.side li strong{font-size:17px}
+.side li span{font-size:15px;color:var(--muted)}
+@media (max-width:900px){.sides{grid-template-columns:1fr}}
+.tt-features{display:grid;gap:var(--gutter)}
+.tt-feature{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;text-decoration:none}
+.tt-feature .tt-img{width:100%}
+.tt-copy{min-width:0;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.tt-copy h3{font-weight:800;font-stretch:88%;font-size:clamp(36px,5vw,72px);line-height:.9;letter-spacing:-.035em}
+.tt-copy p{font-size:18px;max-width:44ch;color:var(--muted)}
+.tt-copy .btn{margin-top:8px}
+a.tt-feature:hover .btn{opacity:.85}
+.tt-brand{position:absolute;left:16px;top:16px;right:16px;font-weight:800;font-stretch:88%;font-size:24px;line-height:1;letter-spacing:-.02em;color:var(--fg)}
+@media (max-width:620px){.tt-feature{grid-template-columns:1fr}.tt-feature .tt-img{max-width:240px}}
+.status-pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--fg);color:var(--fg);border-radius:999px;padding:2px 8px;vertical-align:1px}
+.status-row{margin-top:clamp(20px,3vw,32px)}
+.yt-dek{font-size:15px;color:var(--muted);max-width:52ch}
+.tt-title{font-weight:800;font-stretch:88%;font-size:clamp(22px,2.2vw,30px);line-height:1;letter-spacing:-.02em}
+.tt-result{display:inline-block;align-self:flex-start;background:var(--fg);color:var(--bg);font-weight:700;font-size:14px;padding:4px 10px;border-radius:999px}
+.tt .tt-cap{font-size:15px;font-weight:400;color:var(--muted);line-height:1.45}
+a.tt:hover .tt-title{text-decoration:underline;text-underline-offset:4px}
+.numbers{margin-top:clamp(40px,6vw,80px);border-top:1px solid var(--line);padding-top:24px}
+.numbers-head h3{margin:0;font-weight:800;font-stretch:85%;font-size:clamp(44px,7vw,104px);line-height:.9;letter-spacing:-.04em}
+.numbers-video{display:block;margin-top:12px;font-weight:600;font-size:clamp(17px,1.6vw,20px)}
+.numbers-head p{margin-top:6px;font-size:14px;color:var(--muted)}
+.numbers-body{display:block;margin-top:28px}
+.numbers-shots{display:grid;grid-template-columns:repeat(2,minmax(0,280px));gap:var(--gutter);margin-top:28px}
+.numbers-main{max-width:1000px}
+.numbers-shot{margin:0}
+.numbers-shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px}
+.numbers-shot figcaption{margin-top:8px;font-size:11px}
+.numbers-main{min-width:0}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;border-top:1px solid var(--fg)}
+.stats > div{padding:16px 16px 16px 0;border-bottom:1px solid var(--line);min-width:0}
+.stats dt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.stats dd{margin:6px 0 0;font-weight:800;font-stretch:88%;font-size:clamp(28px,3vw,44px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats span{display:block;margin-top:6px;font-size:13px;color:var(--muted);line-height:1.3}
+.insights{margin-top:32px;display:grid;gap:18px}
+.insight h4{margin:0;font-size:20px;font-weight:700}
+.insight p{margin-top:4px;font-size:16px;color:var(--muted);max-width:60ch}
+.next{padding:16px 18px;background:var(--chip);font-size:16px;max-width:64ch}
+@media (max-width:520px){.numbers-shots{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+@media (max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.numbers-sub{margin-top:clamp(40px,5vw,64px);padding-top:20px;border-top:1px solid var(--line)}
+.numbers-sub h4{margin:6px 0 0;font-weight:800;font-stretch:88%;font-size:clamp(24px,2.6vw,36px);line-height:1;letter-spacing:-.025em}
+.photo-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding-bottom:clamp(40px,5vw,72px)}
+.ps-item{display:flex;flex-direction:column;gap:4px;text-decoration:none;min-width:0}
+.ps-img{position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:var(--chip);margin-bottom:8px}
+.ps-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.ps-item:hover .ps-img img{transform:scale(1.05)}
+.ps-tag{position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--bg);color:var(--fg);padding:3px 8px;border-radius:999px}
+.ps-name{font-weight:700;font-size:16px;line-height:1.2}
+.ps-item:hover .ps-name{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:760px){.photo-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.ps-img img{transition:none}.ps-item:hover .ps-img img{transform:none}}
+.cities{display:flex;flex-wrap:wrap;gap:6px 0;margin-top:28px;font-weight:800;font-stretch:88%;font-size:clamp(28px,4vw,56px);line-height:1;letter-spacing:-.03em}
+.cities span{white-space:nowrap}
+.cities span + span::before{content:"→";font-weight:400;color:var(--muted);margin:0 .35em}
+.world-media{aspect-ratio:4/3;max-width:960px}
+.people-media{aspect-ratio:3/2;max-width:100%}
+.duo{display:grid;grid-template-columns:2fr 1fr;gap:var(--gutter)}
+.duo figure{margin:0;min-width:0}
+.store-media{aspect-ratio:3/4;max-width:100%}
+@media (max-width:620px){.duo{grid-template-columns:1fr}.store-media{aspect-ratio:4/5}}
+.extras{display:grid;grid-template-columns:repeat(2,minmax(0,420px));gap:var(--gutter)}
+.extra{margin:0;min-width:0}
+@media (max-width:560px){.extras{grid-template-columns:1fr}}
+.extra-media{aspect-ratio:1/1;max-width:100%}
+.numbers-lede{margin-top:20px;max-width:46ch;font-size:clamp(20px,2.2vw,30px);line-height:1.35;font-weight:500;letter-spacing:-.01em}
+.numbers-lede mark{background:var(--hl);color:var(--hl-ink);padding:0 .15em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.method{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter);margin:clamp(24px,3vw,40px) 0 clamp(28px,4vw,48px);max-width:1000px}
+.method > div{border-top:3px solid var(--hl);padding-top:14px;min-width:0}
+.method .mono{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.method h4{margin:6px 0 0;font-size:20px;font-weight:700}
+.method p{margin-top:6px;font-size:15px;color:var(--muted)}
+@media (max-width:720px){.method{grid-template-columns:1fr}}
+.yt-grid.single{grid-template-columns:minmax(0,760px)}
+.gtm{border-top:1px solid var(--fg);padding-block:clamp(48px,7vw,104px)}
+.gtm-h{margin-top:16px;font-weight:800;font-stretch:88%;font-size:clamp(40px,7vw,112px);line-height:.92;letter-spacing:-.04em;max-width:14ch}
+.gtm-lede{margin-top:24px;max-width:52ch;font-size:clamp(19px,2vw,26px);line-height:1.4;font-weight:500}
+.gtm-lede mark{background:var(--hl);color:var(--hl-ink);padding:0 .15em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.gtm-cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter);margin-top:clamp(32px,4vw,56px)}
+.gtm-case{background:var(--chip);padding:clamp(20px,2.4vw,32px);min-width:0;display:flex;flex-direction:column;gap:10px}
+.gtm-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.gtm-badge{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--hl);color:var(--hl-ink);padding:3px 9px;border-radius:999px}
+.gtm-logo{width:72px;height:72px;border-radius:10px;display:block;object-fit:cover;background:#fff}
+.gtm-case h3{font-weight:800;font-stretch:88%;font-size:clamp(26px,2.8vw,40px);line-height:1;letter-spacing:-.03em}
+.gtm-case dl{margin:6px 0 0;display:grid;gap:10px}
+.gtm-case dl > div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;border-top:1px solid var(--line);padding-top:10px}
+.gtm-case dt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.gtm-case dd{margin:0;font-size:15.5px;line-height:1.45}
+.gtm-link{margin-top:auto;padding-top:8px;font-weight:600;font-size:15px;text-underline-offset:4px}
+@media (max-width:820px){.gtm-cases{grid-template-columns:1fr}}
+@media (max-width:420px){.gtm-case dl > div{grid-template-columns:1fr;gap:2px}}
+.launch{margin-top:clamp(40px,5vw,72px);border-top:3px solid var(--hl);padding-top:20px}
+.launch-head h3{margin-top:8px;font-weight:800;font-stretch:88%;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.03em}
+.launch-head p{margin-top:10px;max-width:60ch;color:var(--muted);font-size:16px}
+.launch-steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
+.launch-steps li{min-width:0;border-top:1px solid var(--line);padding-top:12px}
+.launch-steps .mono{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.launch-steps h4{margin:6px 0 0;font-size:18px;font-weight:700}
+.launch-steps p{margin-top:6px;font-size:14.5px;color:var(--muted);line-height:1.5}
+@media (max-width:1000px){.launch-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.launch-steps{grid-template-columns:1fr}}
+.tools{margin-top:clamp(36px,4vw,56px);display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.tools ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tools li{border:1px solid var(--fg);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500}
+.bg-photo{margin:20px 0 0;max-width:380px}
+.bg-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 50%;display:block}
+@media (max-width:820px){.bg-photo{max-width:320px}}
+/* Media blocks (placeholders until real campaign imagery is added) */
+.media{position:relative;overflow:hidden;max-width:100%;background:var(--chip)}
+.media-inner{position:absolute;inset:0;display:grid;place-items:center}
+.media svg{width:38%;max-width:320px;height:auto}
+.media .tag{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+.media.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.tile:hover .media.photo img{transform:scale(1.03)}
+.hero-media.photo{aspect-ratio:16/10}
+.caption{margin-top:10px;text-transform:none;letter-spacing:0;font-size:13px}
+@media (prefers-reduced-motion:reduce){.media.photo img{transition:none}.tile:hover .media.photo img{transform:none}}
+.media .play{position:absolute;right:14px;bottom:12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+
+/* Case study */
+.crumb{padding-top:clamp(28px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.crumb a{text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.mode{display:inline-flex;border:1px solid var(--fg);border-radius:999px;padding:3px}
+.mode button{font:500 13px var(--sans);background:none;border:0;color:var(--fg);padding:6px 14px;border-radius:999px;cursor:pointer}
+.mode button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.case-title{padding-block:clamp(28px,5vw,64px) clamp(24px,3vw,40px)}
+.case-title h1{font-weight:800;font-stretch:88%;font-size:clamp(44px,8.5vw,140px);line-height:.92;letter-spacing:-.035em;max-width:16ch}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding-block:20px;border-top:1px solid var(--fg);margin-bottom:clamp(24px,3vw,40px)}
+.meta > div{min-width:0}
+.meta dd{margin:4px 0 0;font-size:16px;font-weight:500}
+.meta dt{color:var(--muted)}
+@media (max-width:720px){.meta{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.hero-media{aspect-ratio:16/8}
+@media (max-width:720px){.hero-media{aspect-ratio:4/3}}
+
+.story{display:grid;grid-template-columns:4fr 8fr;gap:var(--gutter);padding-block:clamp(48px,7vw,104px)}
+.story > *{min-width:0}
+.story .lead{font-size:clamp(22px,2.4vw,34px);line-height:1.3;font-weight:500;letter-spacing:-.01em;max-width:30ch}
+.story .body{display:grid;gap:20px;margin-top:28px;max-width:62ch;font-size:18px;color:var(--fg)}
+@media (max-width:820px){.story{grid-template-columns:1fr}}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter)}
+.pair .media{aspect-ratio:4/5}
+@media (max-width:620px){.pair{grid-template-columns:1fr}.pair .media{aspect-ratio:4/3}}
+
+.scope{display:grid;grid-template-columns:4fr 8fr;gap:var(--gutter);padding-block:clamp(48px,7vw,104px)}
+.scope > *{min-width:0}
+.scope ul{list-style:none;padding:0;margin:0;border-top:1px solid var(--fg)}
+.scope li{padding-block:16px;border-bottom:1px solid var(--line);font-size:clamp(18px,1.8vw,24px);font-weight:500;letter-spacing:-.01em}
+.question{font-weight:800;font-stretch:90%;font-size:clamp(30px,4.6vw,68px);line-height:1;letter-spacing:-.03em;padding-block:clamp(56px,8vw,120px);max-width:20ch}
+@media (max-width:820px){.scope{grid-template-columns:1fr}}
+
+body.quick .full-only{display:none}
+
+.next{border-top:1px solid var(--fg);padding-block:28px clamp(64px,8vw,120px)}
+.next-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter);margin-top:20px}
+.next-grid .tile .media{aspect-ratio:3/2}
+.next-grid .tile h2{font-size:clamp(18px,1.6vw,22px)}
+@media (max-width:720px){.next-grid{grid-template-columns:1fr}}
+
+/* About / contact */
+.block{border-top:1px solid var(--fg);padding-block:clamp(48px,7vw,104px);display:grid;grid-template-columns:4fr 8fr;gap:var(--gutter)}
+.block > *{min-width:0}
+.block .big{font-size:clamp(22px,2.4vw,34px);line-height:1.3;font-weight:500;letter-spacing:-.01em;max-width:32ch}
+.block .body{margin-top:24px;max-width:62ch;color:var(--muted);font-size:18px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:40px}
+.steps div{border-top:1px solid var(--line);padding-top:14px;min-width:0}
+.steps h3{font-size:20px;font-weight:700;margin-top:6px}
+.steps p{font-size:15px;color:var(--muted);margin-top:6px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.block{grid-template-columns:1fr}}
+.contact-h{font-weight:800;font-stretch:88%;font-size:clamp(40px,7vw,104px);line-height:.95;letter-spacing:-.03em;max-width:14ch}
+.contact-rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
+.contact-rows > div{min-width:0}
+.contact-rows .v{margin-top:6px;font-size:18px;font-weight:500;overflow-wrap:anywhere}
+.contact-rows .v a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.copy{margin-top:10px;font:500 13px var(--sans);background:none;color:var(--fg);border:1px solid var(--fg);border-radius:999px;padding:6px 14px;cursor:pointer}
+.copy:hover{background:var(--fg);color:var(--bg)}
+.pillars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter)}
+.pillar{min-width:0;border-top:1px solid var(--line);padding-top:18px}
+.pillar h3{font-weight:800;font-stretch:88%;font-size:clamp(34px,4.4vw,60px);line-height:.95;letter-spacing:-.03em}
+.pillar p{margin-top:16px;font-size:18px;line-height:1.5;max-width:46ch}
+.skills{list-style:none;margin:36px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.skills li{border:1px solid var(--fg);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500}
+@media (max-width:720px){.pillars{grid-template-columns:1fr}}
+.block .body a{color:var(--fg);text-underline-offset:3px}
+.story-box.placeholder{opacity:.45}
+.story-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.story-grid.three .story-box h3{font-size:clamp(20px,1.9vw,26px);line-height:1.1;letter-spacing:-.015em}
+.story-grid.three .story-box p{font-size:15.5px}
+@media (max-width:980px){.story-grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.story-grid.three{grid-template-columns:1fr}}
+.story-img.cover{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:18px;color:#fff}
+.story-img.cover.dn{background:var(--dn)}
+.story-img.cover.dt{background:var(--dt)}
+.cover-outlet{font-weight:800;font-stretch:88%;font-size:clamp(20px,2vw,28px);line-height:1;letter-spacing:-.02em;max-width:10ch}
+.cover-section{font-size:11px;opacity:.8}
+a.story-box:hover .story-img.cover{filter:brightness(1.12)}
+.outlet-label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.outlet-name{font-weight:800;font-stretch:90%;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em}
+.story-box.placeholder .story-img{background:transparent;border:1px dashed var(--muted)}
+.story-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,3vw,40px) var(--gutter);padding-bottom:clamp(48px,6vw,80px)}
+.story-box{display:flex;flex-direction:column;gap:10px;text-decoration:none;min-width:0}
+.story-img{aspect-ratio:3/2;max-width:100%;background:var(--chip);position:relative;overflow:hidden;display:grid;place-items:center;color:var(--muted);margin-bottom:6px}
+.story-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+a.story-box:hover .story-img img{transform:scale(1.03)}
+a.story-box:hover h3{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.story-box h3{font-weight:800;font-stretch:90%;font-size:clamp(26px,3vw,40px);line-height:1;letter-spacing:-.025em}
+.story-box p{font-size:17px;color:var(--muted);max-width:52ch}
+@media (max-width:720px){.story-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.story-img img{transition:none}a.story-box:hover .story-img img{transform:none}}
+.covered{border-top:1px solid var(--fg);padding-block:20px clamp(48px,6vw,80px)}
+.covered-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter);margin-top:20px}
+.cov{background:var(--chip);padding:clamp(20px,3vw,36px);min-width:0}
+.cov h3{font-weight:800;font-stretch:90%;font-size:clamp(26px,3vw,40px);line-height:1;letter-spacing:-.025em}
+.cov p{margin-top:14px;font-size:17px;color:var(--muted);max-width:46ch}
+@media (max-width:720px){.covered-grid{grid-template-columns:1fr}}
+.articles{border-top:1px solid var(--line);margin-bottom:clamp(48px,6vw,80px)}
+.art-row{display:grid;grid-template-columns:2fr 5fr 2fr 1.2fr;gap:20px;padding-block:20px;border-bottom:1px solid var(--line);text-decoration:none;align-items:baseline}
+.art-row > span{min-width:0}
+.art-row.head{padding-block:12px}
+.art-title{font-weight:700;font-size:clamp(19px,1.8vw,24px);letter-spacing:-.01em;line-height:1.2}
+a.art-row:hover .art-title{text-decoration:underline;text-underline-offset:4px}
+.art-row.placeholder{opacity:.45;border-bottom-style:dashed}
+.art-empty{padding-top:14px}
+@media (max-width:720px){.art-row{grid-template-columns:1fr;gap:4px}.art-row.head{display:none}}
+.platform{border-top:1px solid var(--fg);padding-block:20px clamp(40px,5vw,72px)}
+.platform-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.platform-head > div{min-width:0}
+.platform-name{font-weight:800;font-stretch:85%;font-size:clamp(56px,10vw,160px);line-height:.88;letter-spacing:-.045em;margin-top:8px}
+.platform-name.small{font-size:clamp(40px,6vw,88px)}
+.platform-handle{font-weight:700;font-size:clamp(18px,1.8vw,24px);text-decoration:none;overflow-wrap:anywhere}
+a.platform-handle:hover{text-decoration:underline;text-underline-offset:4px}
+.platform-handle.ph{color:var(--muted);font-family:var(--mono);font-size:14px;font-weight:400;border:1px dashed var(--muted);padding:4px 10px}
+.tt-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter);max-width:1000px}
+.tt,.yt{display:flex;flex-direction:column;gap:8px;text-decoration:none;min-width:0}
+.tt-img{aspect-ratio:9/16;max-width:100%;background:var(--chip);position:relative;overflow:hidden;display:grid;place-items:center}
+.yt-img{aspect-ratio:16/9;max-width:100%;background:var(--chip);position:relative;overflow:hidden;display:grid;place-items:center}
+.tt-img img,.yt-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tt-play{position:relative;font-size:22px;color:var(--muted)}
+.tt img ~ .tt-play,.yt img ~ .tt-play{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.tt p,.yt p{font-size:16px;font-weight:600;line-height:1.3}
+a.tt:hover p,a.yt:hover p{text-decoration:underline;text-underline-offset:3px}
+.tt.placeholder,.yt.placeholder{opacity:.45}
+.tt.placeholder .tt-img,.yt.placeholder .yt-img{background:transparent;border:1px dashed var(--muted)}
+.yt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter)}
+@media (max-width:560px){.tt-grid{grid-template-columns:minmax(0,320px)}}
+@media (max-width:560px){.yt-grid{grid-template-columns:1fr}}
+.li-note{border-top:1px solid var(--line);padding-block:18px clamp(48px,6vw,80px);font-size:15px;color:var(--muted)}
+.li-note a{color:var(--muted);text-underline-offset:3px}
+.accts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--fg);margin-bottom:var(--gutter)}
+.acct{display:flex;flex-direction:column;gap:4px;padding:20px 20px 20px 0;text-decoration:none;min-width:0}
+.acct + .acct{padding-left:20px;border-left:1px solid var(--line)}
+.acct-handle{font-weight:800;font-stretch:90%;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em;overflow-wrap:anywhere}
+a.acct:hover .acct-handle{text-decoration:underline;text-underline-offset:4px}
+.acct.placeholder,.post.placeholder{opacity:.45}
+@media (max-width:720px){.platform{border-top:1px solid var(--fg);padding-block:20px clamp(40px,5vw,72px)}
+.platform-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.platform-head > div{min-width:0}
+.platform-name{font-weight:800;font-stretch:85%;font-size:clamp(56px,10vw,160px);line-height:.88;letter-spacing:-.045em;margin-top:8px}
+.platform-name.small{font-size:clamp(40px,6vw,88px)}
+.platform-handle{font-weight:700;font-size:clamp(18px,1.8vw,24px);text-decoration:none;overflow-wrap:anywhere}
+a.platform-handle:hover{text-decoration:underline;text-underline-offset:4px}
+.platform-handle.ph{color:var(--muted);font-family:var(--mono);font-size:14px;font-weight:400;border:1px dashed var(--muted);padding:4px 10px}
+.tt-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter);max-width:1000px}
+.tt,.yt{display:flex;flex-direction:column;gap:8px;text-decoration:none;min-width:0}
+.tt-img{aspect-ratio:9/16;max-width:100%;background:var(--chip);position:relative;overflow:hidden;display:grid;place-items:center}
+.yt-img{aspect-ratio:16/9;max-width:100%;background:var(--chip);position:relative;overflow:hidden;display:grid;place-items:center}
+.tt-img img,.yt-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tt-play{position:relative;font-size:22px;color:var(--muted)}
+.tt img ~ .tt-play,.yt img ~ .tt-play{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.tt p,.yt p{font-size:16px;font-weight:600;line-height:1.3}
+a.tt:hover p,a.yt:hover p{text-decoration:underline;text-underline-offset:3px}
+.tt.placeholder,.yt.placeholder{opacity:.45}
+.tt.placeholder .tt-img,.yt.placeholder .yt-img{background:transparent;border:1px dashed var(--muted)}
+.yt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter)}
+@media (max-width:560px){.tt-grid{grid-template-columns:minmax(0,320px)}}
+@media (max-width:560px){.yt-grid{grid-template-columns:1fr}}
+.li-note{border-top:1px solid var(--line);padding-block:18px clamp(48px,6vw,80px);font-size:15px;color:var(--muted)}
+.li-note a{color:var(--muted);text-underline-offset:3px}
+.accts{grid-template-columns:1fr}.acct + .acct{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter);margin-top:clamp(24px,3vw,40px)}
+.post{text-decoration:none;min-width:0;display:flex;flex-direction:column;gap:8px}
+.post-img{aspect-ratio:4/5;max-width:100%;background:var(--chip);position:relative;overflow:hidden}
+.post.placeholder .post-img{border:1px dashed var(--muted);background:transparent}
+.post-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.post p{font-size:16px;font-weight:500}
+@media (max-width:720px){.posts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.todo{display:inline-block;font-family:var(--mono);font-size:13px;padding:3px 8px;border:1px dashed var(--muted);color:var(--muted);font-weight:400}
+@media (max-width:700px){.contact-rows{grid-template-columns:1fr}}
+
+footer{background:var(--fg);color:var(--bg)}
+footer .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-block:40px}
+footer .wrap > div{min-width:0}
+footer .big{font-weight:800;font-stretch:110%;font-size:22px}
+footer p{font-size:14px;opacity:.75;margin-top:6px}
+@media (max-width:700px){footer .wrap{grid-template-columns:1fr}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#about">Lauren Kim</a>
+    <nav aria-label="Primary">
+      <a href="#about" data-nav="about">About</a>
+      <a href="#work" data-nav="work">Work</a>
+      <a href="#writing" data-nav="writing">Writing</a>
+      <a href="#social" data-nav="social">Social</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <div><div class="big">Lauren Kim</div><p>Storyteller · Critical thinker · Analyst</p></div>
+    <div><div class="mono">Chicago</div><p>Northwestern University · Evanston, IL</p></div>
+    <div><div class="mono">© 2026</div><p>laurenkim0902@gmail.com</p></div>
+  </div>
+</footer>
+
+<script>
+const ART = {
+  chalet: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M60 112V44"/><path d="M60 80c-20 0-32-13-32-32 20 0 32 13 32 32z"/><path d="M60 62c20 0 32-13 32-32-20 0-32 13-32 32z"/><path d="M60 44c-9-7-11-17-6-28 9 7 11 17 6 28z"/></svg>`,
+  tarts: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2"><circle cx="60" cy="60" r="46"/><circle cx="60" cy="60" r="34"/><path d="M60 14v12M60 94v12M14 60h12M94 60h12M27 27l8 8M85 85l8 8M27 93l8-8M85 35l8-8"/><circle cx="60" cy="60" r="7"/></svg>`,
+  unm: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2"><path d="M60 12l18 18-18 18-18-18z"/><path d="M60 72l18 18-18 18-18-18z"/><path d="M12 60l18-18 18 18-18 18z"/><path d="M72 60l18-18 18 18-18 18z"/><path d="M60 50l10 10-10 10-10-10z"/></svg>`,
+  workshop: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2"><circle cx="46" cy="60" r="30"/><circle cx="74" cy="60" r="30"/><path d="M60 34v52"/></svg>`
+};
+
+const PROJECTS = [
+  {
+    id:"chalet", status:"current", art:"chalet", a:"--chalet-a", b:"--chalet-b",
+    img:"chalet-hero.jpg", imgPos:"50% 70%",
+    extraImg:"chalet-sign.jpg", extraPos:"50% 50%",
+    extraAlt:"The Chalet Home + Garden sign above a white building lined with black iron garden gates and trellises, under a cloudy sky",
+    extraCaption:"Chalet Home + Garden in Wilmette",
+    extraImg2:"chalet-greenhouse.jpg", extraPos2:"50% 50%",
+    extraAlt2:"Inside Chalet’s greenhouse: orchids, flowering plants and potted greenery displayed on a round table and shelves under a glass roof",
+    extraCaption2:"Inside the greenhouse",
+    imgAlt:"Two men with a vintage cream Chalet pickup truck reading “Since 1917” outside the Wilmette store, under blue “Celebrating 100 Years” banners",
+    caption:"Chalet’s Wilmette store, with the vintage “Since 1917” truck",
+    client:"Chalet Home + Garden", title:"Chalet: Planted in Wilmette Since 1917",
+    short:"Taking a 100-year family name online and deeper into the community.",
+    people:"Fourth-generation owner Lawson Thalmann and the family that has run Chalet since 1917.", since:"1917", years:"109", yearsNote:"years", sinceLabel:"Since 1917", community:"Generations of North Shore families have planted their gardens, decorated their homes and marked the seasons with Chalet.",
+    location:"Wilmette, IL", type:"Garden center & home store", discipline:"Brand & campaign strategy",
+    lead:"Chalet has been part of North Shore life for more than a century. Now led by fourth-generation owner Lawson Thalmann, the business is growing online and adopting new tools, without losing the image and trust it has built since 1917.",
+    body:["The work starts with what makes Chalet Chalet: a 100-plus-year family legacy, deep expertise and a place in the community. Every new step, online or in store, is measured against keeping that image intact.", "From there, the strategy focuses on expanding and refining Chalet’s Shopify store so customers can shop the brand they trust from home, introducing AI tools in ways that are both ethical and genuinely useful, and finding new ways for Chalet to show up in the community it has served for generations."],
+    scope:["Ethical and effective AI implementation", "Expanding and refining the Shopify online store", "Protecting the 100+ year legacy image", "Deeper integration into the local community"],
+    question:"How does a 100-year-old name feel like the newest favorite place in town?"
+  },
+  {
+    id:"three-tarts", status:"current", art:"tarts", a:"--tarts-a", b:"--tarts-b",
+    img:"three-tarts-hero.jpg", imgPos:"50% 55%",
+    peopleImg:"tarts-founders.jpg", peoplePos:"50% 45%",
+    peopleAlt:"Two smiling women in Three Tarts shirts and aprons stand behind a table of cookies, cupcakes, tarts and pastries with a Three Tarts Bakery and Café sign",
+    peopleCaption:"The founders of Three Tarts at a community event",
+    storeImg:"tarts-storefront.jpg", storePos:"50% 45%",
+    storeAlt:"The Three Tarts Bakery and Café storefront, with a brick facade, striped orange awning and fall planters with pumpkins",
+    storeCaption:"The Northfield storefront",
+    worldImg:"tarts-classes.jpg", worldPos:"50% 50%",
+    worldAlt:"Children chop and grate vegetables at a long table during a hands-on cooking class, with an instructor helping",
+    worldCaption:"Hands-on classes for kids and parents, part of bringing families to the table",
+    imgAlt:"Three Tarts bakery counter with hand-lettered chalkboard menus above glass cases of scones, muffins, decorated cookies, tarts and cakes",
+    caption:"The Three Tarts counter in Northfield, with its hand-lettered chalkboard menus",
+    client:"Three Tarts Bakery & Café", title:"Three Tarts: Northfield’s Kitchen Table",
+    short:"Bringing families and seniors to the table at a woman-founded, independent bakery.",
+    people:"Co-founder Kate Rooney and the women who opened Three Tarts in 1998.", since:"1998", years:"28", yearsNote:"years", sinceLabel:"Since 1998", community:"Since 1998, Three Tarts has been where Northfield neighbors meet for coffee, order birthday cakes and celebrate milestones.",
+    location:"Northfield, IL", type:"Bakery & café", discipline:"Brand & campaign strategy",
+    lead:"Founded by women in 1998, Three Tarts is still woman-run and independent, not backed by private equity or venture capital. Co-founder Kate Rooney and her team are known for their service, and the strategy is about making sure more people experience it.",
+    body:["The work focuses on the people Three Tarts already serves well but could reach more of: families and seniors. That means new baking classes for children and parents, more visibility for the café’s extensive children’s menu, and a tailored menu for seniors, including diabetic-friendly options.", "On social media, the strategy puts the bakery’s service and its story front and center: a woman-founded, woman-run local small business that has stayed independent for more than 25 years."],
+    scope:["Baking classes for children and parents", "Marketing the extensive children’s menu", "A tailored menu for seniors, including diabetic-friendly options", "Social content highlighting standout service", "Telling the story of a woman-founded, independent small business, not backed by PE or VC"],
+    question:"How do you grow a bakery without losing what makes it feel like yours?"
+  },
+  {
+    id:"unm", status:"upcoming", art:"unm", a:"--unm-a", b:"--unm-b",
+    img:"unm-hero.jpg", imgPos:"50% 40%",
+    imgAlt:"Entrance of the Ukrainian National Museum at 2249 W. Superior St., with an ornate carved arch and the museum name in Ukrainian and English above wooden doors",
+    caption:"The museum’s entrance on West Superior Street in Ukrainian Village",
+    client:"Ukrainian National Museum", title:"Ukrainian National Museum: Open Doors on Superior Street",
+    short:"Opening a cultural home to a new generation of Chicagoans.",
+    people:"The Ukrainian Chicagoans who have kept their community’s art, history and stories alive since 1952.", since:"1952", years:"74", yearsNote:"years", sinceLabel:"Since 1952", community:"Since 1952, the museum has preserved Ukrainian art, history and diaspora stories, and served as a gathering place for Chicago’s Ukrainian community.",
+    location:"Ukrainian Village, Chicago", type:"Museum", discipline:"Brand & campaign strategy",
+    lead:"The Ukrainian National Museum is a home for Ukrainian history, art and diaspora stories in Chicago’s Ukrainian Village. In this upcoming engagement, the goal is to reach a younger, broader audience while honoring the community that built it.",
+    body:[
+      "The strategy will give the museum a clear narrative for first-time visitors: why these stories matter in Chicago today, and why they are worth an afternoon.",
+      "Exhibitions and events will get a campaign approach aimed at students and young Chicagoans, alongside membership and supporter messaging that keeps the longtime community at the center."
+    ],
+    scope:["Personal and family stories from Chicago’s Ukrainian community","Brand narrative and messaging for new visitors","Exhibition and event campaign strategy","Outreach to students and young Chicagoans","Membership and supporter messaging"],
+    question:"How does a heritage museum become a place young Chicagoans choose on a Saturday?"
+  },
+  {
+    id:"workshop", status:"upcoming", art:"workshop", a:"--ws-a", b:"--ws-b",
+    img:"workshop-hero.jpg", imgPos:"50% 50%",
+    imgAlt:"The Workshop logo: “Serving Individuals with Disabilities since 1961” and “Providing jobs for all abilities” on a blue panel framed by a rainbow pattern",
+    caption:"The Workshop’s current identity: “Providing jobs for all abilities”",
+    client:"The Workshop", title:"The Workshop: Every Ability Gets to Work",
+    short:"A brand that speaks to job seekers, families, employers and donors at once.",
+    people:"The job seekers, families, employers and staff who have made The Workshop’s mission real since 1961.", since:"1961", years:"65", yearsNote:"years", sinceLabel:"Since 1961", community:"Since 1961, The Workshop has been finding jobs for people with disabilities, and showing local employers what inclusive hiring looks like.",
+    location:"Illinois", type:"Nonprofit", discipline:"Brand & campaign strategy",
+    lead:"Since 1961, The Workshop has helped people with disabilities, including autistic people, find meaningful jobs. In this upcoming engagement, the brand will need to speak to four audiences at once: job seekers, their families, employers and donors.",
+    body:[
+      "The work will define a mission, positioning and voice that are respectful and led by the people the organization serves, so the story never talks about them without them.",
+      "Each audience will get its own messaging built from that core, with awareness and fundraising campaign strategy and employer partnership stories that show inclusive hiring as a win for the business."
+    ],
+    scope:["First-person stories from job seekers, families and employers","Mission, positioning and brand voice","Messaging for job seekers, families, employers and donors","Awareness and fundraising campaign strategy","Employer partnership storytelling"],
+    question:"How do you build a brand that employers want to be part of?"
+  }
+];
+
+const GTM_CASES = [
+  { kind:"Consumer · Market expansion", name:"Anua Beauty", badge:"Brand partnership", logo:"anua-logo.png",
+    problem:"Grow a Korean skincare brand with a new U.S. demographic.",
+    audience:"U.S. college students discovering skincare through short-form video.",
+    approach:"Campus ambassador content and PR built for TikTok, framed around everyday student routines.",
+    signal:"Campaign content live on TikTok; results tracked through TikTok analytics.",
+    link:"#social", linkText:"See the content" },
+  { kind:"Retail · E-commerce growth", name:"Chalet Home + Garden", badge:"Consulting", logo:"chalet-logo2.png",
+    problem:"Grow a 109-year-old business online without losing its legacy image.",
+    audience:"Younger North Shore homeowners who shop online first.",
+    approach:"Expanding and refining the Shopify store, ethical AI implementation, and community-driven brand storytelling, tracked in Shopify Analytics and Google Analytics.",
+    signal:"In progress. Engagement started in 2026.",
+    link:"#chalet", linkText:"View the project" },
+  { kind:"B2B · Two-sided marketplace", name:"Beige", badge:"B2B", logo:"beige-logo.png",
+    problem:"Grow a platform that connects businesses with vetted videographers and photographers, plus AI-powered editing: like a Fiverr for photo and video production.",
+    audience:"Businesses that need professional photo and video content, and the creators who serve them.",
+    approach:"Go-to-market and marketing work for a B2B platform where both sides of the marketplace have to be won.",
+    signal:"B2B experience across buyer and supplier audiences.",
+    link:"", linkText:"" },
+  { kind:"Content · Growth experiment", name:"Educational short-form content", badge:"25K+ views", logo:"tiktok-logo.png",
+    problem:"Test what makes educational content spread to new audiences.",
+    audience:"College students, 83% women, 100% reached through recommendations.",
+    approach:"Tracked reach, engagement rate, watch time and follower conversion, then designed the next test.",
+    signal:"25,000 views and counting · 5.9% engagement rate · 145 saves.",
+    link:"#social", linkText:"Inside the numbers" },
+];
+
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function media(p, cls="", label="Campaign image", invert=false, usePhoto=false){
+  if(usePhoto && p.img){
+    return `<div class="media photo ${cls}"><img src="${p.img}" alt="${esc(p.imgAlt)}" style="object-position:${p.imgPos||"center"}"></div>`;
+  }
+  const bg = invert ? p.b : p.a, fg = invert ? p.a : p.b;
+  return `<div class="media ${cls}" style="background:var(${bg});color:var(${fg})" role="img" aria-label="${esc(p.client)} placeholder image">
+    <div class="media-inner">${ART[p.art]}</div>
+    <span class="tag">${label}</span>
+  </div>`;
+}
+
+function tile(p){
+  return `<a class="tile${p.status==="upcoming"?" upcoming":""}" href="#${p.id}">${media(p,"","",false,true)}<div class="tile-head"><h2>${esc(p.client)}</h2><span class="since mono">${esc(p.sinceLabel)}</span></div><p>${p.status==="upcoming"?`<span class="status-pill">Upcoming</span> `:""}${esc(p.short)}</p></a>`;
+}
+
+function aboutPage(){
+  return `
+  <div class="wrap me">
+    <div class="me-text">
+      <span class="mono muted">Storyteller · Critical thinker · Analyst</span>
+      <h1>Hi, I’m Lauren Kim.</h1>
+      <p class="me-lede">I’m a storyteller who thinks critically and works from the evidence. I look for the people, places and communities that deserve to be known, question what’s assumed about them, and tell their stories through reporting, writing and brand strategy. As a psychology student at Northwestern University, I use research methods and statistics to understand the audiences those stories reach.</p>
+      <div class="me-actions">
+        <a class="btn solid" href="#work">See my work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="me-photo"><img src="lauren.jpg" alt="Portrait of Lauren Kim"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="section-label"><span class="mono muted">Explore</span></div>
+    <div class="explore">
+      <a class="ex" href="#work">
+        <span class="mono muted">Marketing</span>
+        <h2>Work</h2>
+        <p>Brand, campaign and go-to-market strategy for Chicago-area businesses, museums and nonprofits, plus B2B and brand partnership work.</p>
+        <span class="ex-go">View client work →</span>
+      </a>
+      <a class="ex" href="#writing">
+        <span class="mono muted">Journalism &amp; writing</span>
+        <h2>Writing</h2>
+        <p>Reporting and writing that gives attention to communities and individuals who deserve more of it, from Los Angeles to Chicago.</p>
+        <span class="ex-go">Read my writing →</span>
+      </a>
+      <a class="ex" href="#social">
+        <span class="mono muted">Content</span>
+        <h2>Social</h2>
+        <p>Short-form content marketing and promotional video, mostly on TikTok, plus longer pieces on YouTube.</p>
+        <span class="ex-go">Watch my content →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="wrap">${bothSidesBlock()}${strengthsBlock()}${aboutBlock()}${contactBlock()}</div>`;
+}
+
+function workPage(){
+  return `
+  <div class="wrap intro">
+    <span class="mono muted">Work · Brand &amp; marketing strategy</span>
+    <h1 style="margin-top:20px">Every brand has people behind it.</h1>
+    <p>I create brand and campaign strategy for local businesses, museums and nonprofits that have been part of their communities for at least a decade, and one for more than a century. These businesses are part of their communities, and each one has a story. My strategy is to let people get to know them: the owners, the staff and the neighbors behind them.</p>
+  </div>
+  <div class="wrap">
+    <div class="photo-strip" aria-label="Client photos">
+      ${PROJECTS.map(p=>`<a class="ps-item" href="#${p.id}">
+        <div class="ps-img"><img src="${p.img}" alt="${esc(p.imgAlt)}" style="object-position:${p.imgPos||"center"}">${p.status==="upcoming"?`<span class="ps-tag">Upcoming</span>`:""}</div>
+        <span class="ps-name">${esc(p.client)}</span>
+        <span class="mono muted">${esc(p.location)}</span>
+      </a>`).join("")}
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="tenure" aria-label="Years in the community">
+      ${PROJECTS.map(p=>`<a href="#${p.id}" class="ten"><span class="num">${esc(p.years)}</span><span class="unit">${esc(p.yearsNote)}</span><span class="who">${esc(p.client)}</span><span class="mono muted">${esc(p.since.match(/^\d{4}$/)?"Since "+p.since:"In the community")}</span></a>`).join("")}
+    </div>
+    <p class="tenure-note">More than <strong>275 years</strong> of combined service to Chicago-area communities across my current and upcoming clients. These are places people grew up with, gather in and rely on. The goal of every engagement is to keep that impact going for decades more.</p>
+  </div>
+  <div class="wrap">${strategyBlock()}</div>
+  <div class="wrap section-label"><span class="mono muted">Current and upcoming clients</span></div>
+  <div class="wrap grid" aria-label="Client work">${PROJECTS.map(tile).join("")}</div>
+  <div class="wrap">
+    <section class="gtm" id="gtm-sec">
+      <span class="mono muted">Growth &amp; go-to-market</span>
+      <h2 class="gtm-h">Find the audience. Reach them. Convert them.</h2>
+      <p class="gtm-lede">Across consulting, brand partnerships and a B2B marketplace, my work comes back to the same go-to-market questions: <mark>who is the target customer</mark>, <mark>how do we position for them</mark>, and <mark>what moves them to act</mark>.</p>
+
+      <div class="gtm-cases">
+        ${GTM_CASES.map(c=>`<article class="gtm-case">
+          <div class="gtm-top"><span class="mono muted">${esc(c.kind)}</span>${c.badge?`<span class="gtm-badge">${esc(c.badge)}</span>`:""}</div>
+          ${c.logo?`<img class="gtm-logo" src="${c.logo}" alt="${esc(c.name)} logo">`:""}<h3>${esc(c.name)}</h3>
+          <dl>
+            <div><dt>Challenge</dt><dd>${esc(c.problem)}</dd></div>
+            <div><dt>Audience</dt><dd>${esc(c.audience)}</dd></div>
+            <div><dt>Approach</dt><dd>${esc(c.approach)}</dd></div>
+            <div><dt>Signal</dt><dd>${esc(c.signal)}</dd></div>
+          </dl>
+          ${c.link?`<a class="gtm-link" href="${c.link}">${esc(c.linkText)} →</a>`:""}
+        </article>`).join("")}
+      </div>
+
+      <div class="launch">
+        <div class="launch-head">
+          <span class="mono muted">Launch plan · Proposal</span>
+          <h3>How I’d launch Beige to Chicago small businesses</h3>
+          <a class="gtm-link" href="https://beige.app/" target="_blank" rel="noopener">beige.app ↗</a>
+          <p>A short go-to-market plan for taking a B2B creative marketplace into a new city, written to show how I approach a launch from target customer to metrics.</p>
+        </div>
+        <ol class="launch-steps">
+          <li><span class="mono">01 · Target customer</span><h4>Who it’s for</h4><p>Owner-run local businesses, like cafés, garden centers, boutiques and nonprofits, that need regular photo and video content but can’t justify an in-house creative team.</p></li>
+          <li><span class="mono">02 · Positioning</span><h4>Why Beige</h4><p>“Professional content without the agency price or the search.” Lead with fast matching, vetted local creators and AI editing that gets content back quickly, not a list of features.</p></li>
+          <li><span class="mono">03 · Channels</span><h4>How they hear about it</h4><p>Chambers of commerce and business districts, local business owner communities, short-form case-study videos of real Chicago shops, and referrals from creators already on the platform.</p></li>
+          <li><span class="mono">04 · Funnel</span><h4>How they convert</h4><p>Free content audit → first booked shoot at an intro price → recurring monthly content package.</p></li>
+          <li><span class="mono">05 · Metrics</span><h4>How I’d measure it</h4><p>Signups, audit-to-booking conversion, cost to acquire a customer, repeat-booking rate and creator supply in each neighborhood.</p></li>
+        </ol>
+      </div>
+
+      <div class="tools">
+        <span class="mono muted">Tools</span>
+        <ul>${["Shopify Analytics","Google Analytics","TikTok Studio","Excel","Canva","Qualtrics","RStudio"].map(t=>`<li>${t}</li>`).join("")}</ul>
+      </div>
+    </section>
+  </div>
+  <div class="wrap">
+    <section class="block">
+      <div><span class="mono muted">How I work</span></div>
+      <div class="steps" style="margin-top:0">
+        <div><span class="mono muted">01</span><h3>Listen</h3><p>Time with owners, staff and longtime customers.</p></div>
+        <div><span class="mono muted">02</span><h3>Define</h3><p>A brand platform: who you are and who you’re for.</p></div>
+        <div><span class="mono muted">03</span><h3>Translate</h3><p>Campaigns and content for newer, younger audiences.</p></div>
+        <div><span class="mono muted">04</span><h3>Evolve</h3><p>A framework the team keeps using as things change.</p></div>
+      </div>
+    </section>
+    ${contactBlock()}
+  </div>`;
+}
+
+function strategyBlock(){
+  return `<section class="strategy" id="strategy-sec">
+    <span class="mono muted">My strategy</span>
+    <h2 class="strategy-h">Let people meet the business.</h2>
+    <p class="strategy-lede">Local businesses are part of the community. They have histories, people and stories worth knowing: the owner who knows your name, the baker who remembers your order, the family that has stood behind a name for generations. My strategy is to bring those stories forward so people get to know the business, and come to see it as part of their community too.</p>
+    <div class="principles">
+      <div><h3>Show the faces</h3><p>Put owners, staff and the people a business serves at the center of its brand, from campaigns to social content.</p></div>
+      <div><h3>Tell the real story</h3><p>Use reporting skills to uncover the history, origins and everyday moments that make a business worth caring about.</p></div>
+      <div><h3>Connect to how people decide</h3><p>Apply psychology and consumer behavior so those stories build trust, loyalty and word of mouth with new and younger audiences.</p></div>
+      <div><h3>Build it to last</h3><p>Leave each client with a brand platform and story framework their team can keep using for years.</p></div>
+    </div>
+  </section>`;
+}
+
+function bothSidesBlock(){
+  return `<section class="block" id="skills-sec">
+    <div><span class="mono muted">Research + narrative + strategy</span></div>
+    <div>
+      <p class="big">Psychology taught me to read the data. Journalism taught me to find the story in it. Consulting taught me to turn both into results.</p>
+      <div class="sides">
+        <div class="side">
+          <span class="mono muted">Research</span>
+          <h3>Read the data.</h3>
+          <ul>
+            <li><strong>Statistics</strong><span>ANOVAs and t-tests in RStudio, and knowing what the numbers can and can’t support.</span></li>
+            <li><strong>Research methods</strong><span>Designing and running experiments in Qualtrics, evaluating sources and reading scientific literature critically.</span></li>
+            <li><strong>Critical thinking</strong><span>Questioning assumptions, weighing evidence and spotting gaps in an argument.</span></li>
+            <li><strong>Behavioral insight</strong><span>Understanding how people perceive, decide and act.</span></li>
+          </ul>
+        </div>
+        <div class="side">
+          <span class="mono muted">Narrative</span>
+          <h3>Tell the story.</h3>
+          <ul>
+            <li><strong>Writing &amp; editing</strong><span>Turning complex information into accurate, organized, readable prose.</span></li>
+            <li><strong>Reporting &amp; interviewing</strong><span>Twelve published articles across two student newspapers.</span></li>
+            <li><strong>Analysis &amp; argument</strong><span>Close reading, synthesis and building a clear, well-supported case.</span></li>
+            <li><strong>Storytelling</strong><span>Finding the human story and telling it with care.</span></li>
+          </ul>
+        </div>
+        <div class="side">
+          <span class="mono muted">Consulting</span>
+          <h3>Solve the problem.</h3>
+          <ul>
+            <li><strong>Problem solving</strong><span>Finding what’s holding a business back and building practical fixes.</span></li>
+            <li><strong>Business development</strong><span>Opening new revenue and audiences, from an expanded Shopify store to family baking classes and a seniors’ menu.</span></li>
+            <li><strong>Strategy to execution</strong><span>Turning ideas into plans a small team can act on.</span></li>
+            <li><strong>Client partnership</strong><span>Working directly with owners to protect what makes their business theirs.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function strengthsBlock(){
+  return `<section class="block strengths" id="strengths-sec">
+    <div><span class="mono muted">What I bring</span></div>
+    <div>
+      <div class="pillars three">
+        <div class="pillar">
+          <h3>Storytelling</h3>
+          <p>Some communities and individuals deserve more attention and support than they receive, and giving them that visibility has always motivated my work, from reporting in Los Angeles to consulting in Chicago.</p>
+        </div>
+        <div class="pillar">
+          <h3>Understanding people</h3>
+          <p>Psychology at Northwestern, grounded in statistics and research methods, shapes how I think about audiences: why people choose, trust and come back, and what they need from what they read.</p>
+        </div>
+        <div class="pillar">
+          <h3>Clear writing</h3>
+          <p>Whether it’s a feature story, a brand platform or a how-to, I turn complex information into writing that is accurate, organized and easy to use.</p>
+        </div>
+      </div>
+      <ul class="skills" aria-label="Skills">
+        <li>Psychology, Northwestern University</li><li>Statistics</li><li>Research methods</li><li>Data analysis</li><li>RStudio</li><li>Qualtrics</li><li>Excel</li><li>Shopify Analytics</li><li>Google Analytics</li><li>Canva</li><li>Critical thinking</li><li>Journalism &amp; reporting</li><li>Technical &amp; professional writing</li><li>Editing &amp; proofreading</li><li>Research &amp; interviewing</li><li>Problem solving</li><li>Business development</li><li>Go-to-market strategy</li><li>Brand strategy</li><li>Content marketing</li><li>Short-form video</li>
+      </ul>
+    </div>
+  </section>`;
+}
+
+// Add articles here: { title, outlet, date, topic, url }
+// Journalism. Add a photo by setting img:"file.jpg".
+const DN = "The Daily Northwestern", DT = "Daily Trojan";
+const ARTICLES = [
+  { outlet:DN, section:"Campus", date:"May 29, 2026",
+    title:"Students involved in research labs talk impact of federal funding freeze",
+    dek:"Northwestern students working in research labs share how the federal funding freeze is affecting their work.",
+    url:"https://dailynorthwestern.com/2026/05/29/campus/students-involved-in-research-labs-talk-impact-of-federal-funding-freeze/", img:"article-funding.jpg", imgPos:"50% 45%", imgAlt:"The Weber Arch at Northwestern University, framed by trees against a blue sky" },
+  { outlet:DN, section:"Campus", date:"Jan. 26, 2026",
+    title:"Northwestern Prof. Elizabeth Shakman Hurd talks American border religion in new book",
+    dek:"A conversation with Prof. Elizabeth Shakman Hurd about her book on religion and the U.S. border.",
+    url:"https://dailynorthwestern.com/2026/01/26/campus/northwestern-prof-elizabeth-shakman-hurd-talks-american-border-religion-in-new-book/", img:"article-hurd.jpg", imgAlt:"Prof. Elizabeth Shakman Hurd speaks at a podium beside a slide about her book Heaven Has a Wall, facing a seated audience" },
+  { outlet:DN, section:"Campus", date:"Nov. 10, 2025",
+    title:"Northwestern Mock Trial celebrates 40th anniversary reunion at annual ‘Mock at the Rock’ competition",
+    dek:"Alumni return as Northwestern Mock Trial marks four decades at its annual home competition.",
+    url:"https://dailynorthwestern.com/2025/11/10/campus/northwestern-mock-trial-celebrates-40th-anniversary-reunion-at-annual-mock-at-the-rock-competition/", img:"article-mocktrial.jpg", imgAlt:"Speakers at a podium beside a projected team photo address a full room of alumni and students seated at round tables" },
+  { outlet:DN, section:"Arts & Entertainment", date:"Oct. 14, 2025",
+    title:"Jeremy Zucker comes through with ‘garden state’ tour stop",
+    dek:"A concert review of Jeremy Zucker’s ‘garden state’ tour stop at House of Blues Chicago.",
+    url:"https://dailynorthwestern.com/2025/10/14/ae/jeremy-zucker-comes-through-with-garden-state-tour-stop/", img:"article-zucker.jpg", imgAlt:"Jeremy Zucker sings into a microphone while playing an acoustic guitar on stage" },
+  { outlet:DN, section:"Campus", date:"Oct. 6, 2025",
+    title:"Dartmouth professor presents election fraud misinformation research at Institute for Policy Research talk",
+    dek:"Dartmouth Prof. Brendan Nyhan shares his research on election fraud misinformation at Northwestern.",
+    url:"https://dailynorthwestern.com/2025/10/06/campus/dartmouth-professor-presents-election-fraud-misinformation-research-at-institute-for-policy-research-talk/", img:"article-nyhan.jpg", imgAlt:"A speaker points to a slide of conclusions about the persistence of election fraud beliefs during a talk to a seated audience" },
+  { outlet:DT, section:"News", date:"Aug. 20, 2025",
+    title:"Student-founded program connects local shops to USC",
+    dek:"Trojan Shop Local, started by USC’s Black Student Assembly during the pandemic, connects students with dozens of nearby small businesses.",
+    url:"https://dailytrojan.com/2025/08/20/program-connects-shops-to-students/", img:"article-shoplocal.jpg", imgPos:"60% 50%", imgAlt:"A Seeds Marketplace sign with a breakfast burrito photo stands outside a campus building with outdoor tables" },
+  { outlet:DT, section:"News", date:"Apr. 21, 2025",
+    title:"Alum founds non-profit to rescue furry friends",
+    dek:"USC alumna Divya Cowgill founded FurryTail Endings, a donation-funded nonprofit that rescues animals from overcrowded Southern California shelters and finds them homes.",
+    url:"https://dailytrojan.com/2025/04/21/alum-founds-non-profit-to-rescue-furry-friends/", img:"article-rescue.jpg", imgPos:"50% 55%", imgAlt:"A woman kisses a German shepherd in front of a pink flower wall with a neon “Fur Mama’s Day” sign" },
+  { outlet:DT, section:"News", date:"Mar. 11, 2025",
+    title:"Faculty receive recognition for scholarly excellence",
+    dek:"Five USC faculty members are honored as University Professors and Distinguished Professors.",
+    url:"https://dailytrojan.com/2025/03/11/faculty-receive-recognition-for-scholarly-excellence/", img:"article-faculty.jpg", imgAlt:"Bovard Administration building tower at the University of Southern California, framed by autumn trees" },
+  { outlet:DT, section:"News", date:"Jan. 31, 2025",
+    title:"Legally blind magician dazzles USC community",
+    dek:"Tyler Gibgot, a legally blind USC senior and president of the Magic Association, uses magic and public speaking to inspire others.",
+    url:"https://dailytrojan.com/2025/01/31/legally-blind-magician-dazzles-usc-community/", img:"article-magician.jpg", imgPos:"50% 42%", imgAlt:"Tyler Gibgot performs a card flourish, a fanned deck in one hand and a card in midair" },
+  { outlet:DT, section:"News", date:"Oct. 29, 2024",
+    title:"Labor shortage, inflation affect USC Village turnover rate",
+    dek:"Why retail tenants keep turning over at USC Village, from labor shortages to post-pandemic inflation.",
+    url:"https://dailytrojan.com/2024/10/29/labor-shortage-inflation-affect-usc-village-turnover-rate/", img:"article-village.jpg", imgPos:"50% 55%", imgAlt:"Aerial view of USC Village’s brick buildings with the downtown Los Angeles skyline behind" },
+  { outlet:DT, section:"News", date:"Sept. 23, 2024",
+    title:"Long Covid United brings together survivors",
+    dek:"A Long COVID survivor builds a nonprofit to fund research and clinical care for the disease.",
+    url:"https://dailytrojan.com/2024/09/23/long-covid-united-brings-together-survivors/", img:"article-longcovid.jpg", imgPos:"50% 60%", imgAlt:"Guests mingle among tables of auction items in a ballroom with a crystal chandelier" },
+  { outlet:DT, section:"News", date:"Apr. 8, 2024",
+    title:"Native American Student Assembly celebrates past and future with second annual Popup Powwow",
+    dek:"USC’s Native American Student Assembly celebrates Indigenous heritage with ceremony, dance and music on the Great Lawn.",
+    url:"https://dailytrojan.com/2024/04/08/native-american-student-assembly-celebrates-past-and-future-with-second-annual-popup-powwow/", img:"article-powwow.jpg", imgPos:"50% 62%", imgAlt:"Dancers in regalia and guests join hands in a round dance on the lawn at USC’s Popup Powwow, seen from under a red canopy" },
+];
+
+// Technical / professional writing samples: same shape as ARTICLES { title, outlet, place, date, dek, img, url }
+const TECH = [
+  { outlet:"Research study", section:"Experimental psychology", place:"Northwestern University",
+    title:"Effects of feedback valence and task-difficulty priming on task enjoyment",
+    dek:"An original 2 × 2 online experiment (N = 82). I built the study in Qualtrics, ran a two-way ANOVA in RStudio, and tested whether “easy” or “hard” labels and positive or neutral feedback change how much people enjoy a task.",
+    url:"research-task-enjoyment.pdf", img:"research-task-enjoyment.jpg", imgPos:"50% 0%", imgAlt:"Abstract page of a research paper on feedback, priming and task enjoyment" },
+  { outlet:"Research paper", section:"Attitudes & persuasion", place:"Northwestern University",
+    title:"Designing a persuasion campaign for phone-free classrooms",
+    dek:"Using original survey data and research on cognitive dissonance, narrative transportation and the Elaboration Likelihood Model, I designed a campaign to reduce in-class phone use and lower students’ resistance to the message.",
+    url:"research-persuasion-campaign.pdf", img:"research-persuasion-campaign.jpg", imgPos:"50% 0%", imgAlt:"First page of a research paper on student cell phone policies in schools" },
+];
+
+function articleBox(a){
+  const inner = `
+    <div class="story-img ${a.img?"":(a.outlet===DN?"cover dn":a.outlet===DT?"cover dt":"")}">${a.img ? `<img src="${a.img}" alt="${esc(a.imgAlt||a.title)}"${a.imgPos?` style="object-position:${a.imgPos}"`:""}>` : (a.outlet ? `<span class="cover-outlet">${esc(a.outlet)}</span><span class="cover-section mono">${esc(a.section||"")}</span>` : `<span class="mono">Photo</span>`)}</div>
+    <div class="story-meta mono muted">${[a.outlet,a.section,a.date].filter(Boolean).map(esc).join(" · ")}</div>
+    <h3>${esc(a.title)}${a.url?" ↗":""}</h3>
+    <p>${esc(a.dek)}</p>`;
+  return a.url
+    ? `<a class="story-box" href="${a.url}" target="_blank" rel="noopener">${inner}</a>`
+    : `<div class="story-box">${inner}</div>`;
+}
+
+function writing(){
+  const group = (o, place) => `
+    <div class="section-label outlet-label" style="padding-inline:0"><span class="outlet-name">${esc(o)}</span><span class="mono muted">${place} · ${ARTICLES.filter(a=>a.outlet===o).length} articles</span></div>
+    <div class="story-grid three">${ARTICLES.filter(a=>a.outlet===o).map(articleBox).join("")}</div>`;
+  return `
+  <div class="wrap">
+    <div class="crumb"><a class="mono" href="#about">← About</a></div>
+    <div class="case-title"><h1>Writing</h1></div>
+    <div class="story" style="padding-top:0">
+      <div><span class="mono muted">Journalism</span></div>
+      <div>
+        <p class="lead">Some communities and individuals deserve more attention and support than they receive. Giving them that visibility has always been the motivation behind my work.</p>
+        <div class="body"><p>In Los Angeles, reporting for the Daily Trojan, that meant covering a Native American student powwow, a legally blind student magician and a nonprofit built by Long COVID survivors. At Northwestern, I write for The Daily Northwestern, covering campus research, student organizations and the arts.</p></div>
+      </div>
+    </div>
+    ${group(DN,"Evanston")}
+    ${group(DT,"Los Angeles")}
+    <div class="section-label" style="padding-inline:0"><span class="mono muted">Technical &amp; professional writing</span></div>
+    <div class="story-grid">${TECH.length ? TECH.map(articleBox).join("") : [1,2].map(()=>`<div class="story-box placeholder"><div class="story-img"><span class="mono">Sample</span></div><div class="story-meta mono muted">Type · Date</div><h3>Writing sample title</h3><p>Guide, documentation, report or other sample.</p></div>`).join("")}</div>
+  </div>
+  <div class="wrap" style="padding-bottom:clamp(64px,8vw,120px)">${contactBlock()}</div>`;
+}
+
+// Social accounts. Fill in handle + url when ready.
+const TIKTOK  = { handle:"", url:"" };
+const YOUTUBE = { handle:"Living as LAUREN · @laurenkimmy", url:"https://www.youtube.com/@laurenkimmy" };
+const LINKEDIN = { url:"https://www.linkedin.com/in/laurenkjkim/" };
+// TikTok posts: { caption, url, img, result }   YouTube videos: { title, url, img }
+const TIKTOKS = [
+  { brand:"Anua Beauty", role:"Campus ambassador · Brand partnership",
+    caption:"Promotional content and PR as a campus ambassador, helping the K-beauty brand reach a new U.S. audience: college students.",
+    url:"https://www.tiktok.com/t/ZPLLmgvVU/", img:"tiktok-anua.jpg" },
+  { brand:"Sézane", role:"Fashion · Clothing haul",
+    caption:"Fall staples and wardrobe essentials from Sézane, the Paris-born fashion brand, in a clothing haul.",
+    result:"3,000 views and counting",
+    url:"https://vt.tiktok.com/ZSbg5JfKM/", img:"tiktok-sezane.jpg", imgPos:"62% 50%" },
+  { brand:"Educational short-form content", role:"Original content · Storytelling & advice",
+    caption:"My story and advice on transferring colleges as a sophomore, made for students facing the same decision.",
+    result:"25,000 views and counting",
+    url:"https://vt.tiktok.com/ZSbg55h7V/", img:"tiktok-transfer.jpg", imgPos:"50% 45%" },
+];
+const VIDEOS = [
+  { title:"Here’s your sign to go to London this Thanksgiving", tag:"Travel vlog · Storytelling",
+    dek:"A London travel vlog that tells the story of my adventures and journeys through the city, from cafés to the moments in between.",
+    url:"https://www.youtube.com/watch?v=MCLDXp1ADDg", img:"yt-london.jpg" },
+  { title:"Onto the next city: moving out of Los Angeles", tag:"Vlog · Storytelling",
+    dek:"Packing up and saying goodbye to Los Angeles, told as a story about closing one chapter and starting the next.",
+    url:"https://www.youtube.com/watch?v=2jhIHdCwxHg", img:"yt-la.jpg" },
+];
+
+function handleLink(acc, cls){
+  const h = acc.handle ? esc(acc.handle) : "@yourhandle";
+  return acc.url ? `<a class="${cls}" href="${acc.url}" target="_blank" rel="noopener">${h} ↗</a>` : `<span class="${cls} ph">${h}</span>`;
+}
+
+function social(){
+  const ttTile = x => `<div class="tt-img">${x.img?`<img src="${x.img}" alt="${esc(x.caption)}"${x.imgPos?` style="object-position:${x.imgPos}"`:""}>`:`<span class="tt-brand">${esc(x.brand||"")}</span>`}<span class="tt-play" aria-hidden="true">▶</span></div>`;
+  const tiktoks = TIKTOKS.length && TIKTOKS.length <= 2
+    ? TIKTOKS.map(x=>`<a class="tt-feature" href="${x.url}" target="_blank" rel="noopener">
+        ${ttTile(x)}
+        <div class="tt-copy">
+          <span class="mono muted">${esc(x.role||"TikTok")}</span>
+          <h3>${esc(x.brand||"")}</h3>
+          ${x.result?`<span class="tt-result">${esc(x.result)}</span>`:""}
+          <p>${esc(x.caption)}</p>
+          <span class="btn solid">Watch on TikTok ↗</span>
+        </div></a>`).join("")
+    : TIKTOKS.length
+    ? TIKTOKS.map(x=>`<a class="tt" href="${x.url}" target="_blank" rel="noopener">${ttTile(x)}<span class="mono muted">${esc(x.role||"TikTok")}</span><h3 class="tt-title">${esc(x.brand||"")} ↗</h3>${x.result?`<span class="tt-result">${esc(x.result)}</span>`:""}<p class="tt-cap">${esc(x.caption)}</p></a>`).join("")
+    : Array.from({length:4}).map(()=>`<div class="tt placeholder"><div class="tt-img"><span class="tt-play" aria-hidden="true">▶</span></div><p>TikTok caption</p><span class="mono muted">Views or result</span></div>`).join("");
+  const videos = VIDEOS.length
+    ? VIDEOS.map(x=>`<a class="yt" href="${x.url}" target="_blank" rel="noopener"><div class="yt-img">${x.img?`<img src="${x.img}" alt="${esc(x.title)}">`:""}<span class="tt-play" aria-hidden="true">▶</span></div>${x.tag?`<span class="mono muted">${esc(x.tag)}</span>`:""}<p>${esc(x.title)} ↗</p>${x.dek?`<span class="yt-dek">${esc(x.dek)}</span>`:""}</a>`).join("")
+    : Array.from({length:2}).map(()=>`<div class="yt placeholder"><div class="yt-img"><span class="tt-play" aria-hidden="true">▶</span></div><p>Video title</p></div>`).join("");
+  return `
+  <div class="wrap">
+    <div class="crumb"><a class="mono" href="#about">← About</a></div>
+    <div class="case-title"><h1>Social</h1></div>
+    <div class="story" style="padding-top:0">
+      <div><span class="mono muted">Personal work</span></div>
+      <div>
+        <p class="lead">Most of my short-form content marketing lives on TikTok, where I create promotional content, including brand work as a campus ambassador, tell stories in seconds and see in real time what makes people stop, watch and share.</p>
+        <div class="body"><p>Creating for my own channels shapes how I advise clients: which formats reach younger audiences, how a voice carries from TikTok to YouTube, and how small, consistent stories add up to a brand.</p></div>
+      </div>
+    </div>
+
+    <section class="platform feature">
+      <div class="platform-head">
+        <div><span class="mono muted">Primary channel · Short-form content</span><h2 class="platform-name">TikTok</h2></div>
+        ${handleLink(TIKTOK,"platform-handle")}
+      </div>
+      <div class="${TIKTOKS.length && TIKTOKS.length<=2 ? "tt-features" : "tt-grid"}">${tiktoks}</div>
+
+      <div class="numbers" id="tiktok-analysis">
+        <div class="numbers-head">
+          <h3>Inside the numbers</h3>
+          <p class="numbers-lede">Every post is a small experiment. I use engagement analytics to track <mark>impressions</mark>, <mark>audience engagement</mark> and <mark>traffic</mark>, then turn what I find into the next creative decision.</p>
+          <div class="method">
+            <div><span class="mono">01 · Track</span><h4>Impressions &amp; reach</h4><p>Views, unique viewers, and where traffic comes from: followers, new viewers or recommendations.</p></div>
+            <div><span class="mono">02 · Measure</span><h4>Engagement</h4><p>Engagement rate, saves, shares, watch time, completion rate and follower conversion.</p></div>
+            <div><span class="mono">03 · Act</span><h4>The next post</h4><p>Adjust the hook, length, format and audience based on what the numbers show.</p></div>
+          </div>
+          <span class="numbers-video">TikTok: “Transferring as a sophomore”</span>
+          <p>Posted Sept. 14, 2026 · 5:26 long · Source: TikTok Studio, Oct. 6, 2026</p>
+        </div>
+        <div class="numbers-shots">
+            <figure class="numbers-shot">
+              <img src="tiktok-analytics.jpg" alt="TikTok Studio analytics: 24.3K views, 1,254 likes, 14 comments, 31 shares, 145 saves, 208 hours total play time, 34.4 second average watch time, 0.85% watched the full video, 23 new followers. Daily views peak on Sept. 14 and level off by Sept. 15.">
+              <figcaption class="mono muted">Performance · TikTok Studio</figcaption>
+            </figure>
+            <figure class="numbers-shot">
+              <img src="tiktok-viewers.jpg" alt="TikTok Studio viewers tab: 19.0K total viewers; 97% new viewers and 3% returning; 100% non-followers; 83% female and 16% male.">
+              <figcaption class="mono muted">Audience · TikTok Studio</figcaption>
+            </figure>
+        </div>
+        <div class="numbers-sub">
+          <span class="mono muted">How it performed</span>
+          <h4>The performance</h4>
+        </div>
+        <div class="numbers-body">
+          <div class="numbers-main">
+            <dl class="stats">
+              <div><dt>Views</dt><dd>24.3K</dd></div>
+              <div><dt>Engagement rate</dt><dd>5.9%</dd><span>likes, comments, shares and saves ÷ views</span></div>
+              <div><dt>Saves</dt><dd>145</dd></div>
+              <div><dt>Avg. watch time</dt><dd>34.4s</dd><span>of a 5:26 video</span></div>
+              <div><dt>Total play time</dt><dd>208 hrs</dd></div>
+              <div><dt>Watched to the end</dt><dd>0.85%</dd></div>
+            </dl>
+            <div class="insights">
+              <span class="mono muted">What the data says</span>
+              <div class="insight"><h4>The topic landed.</h4><p>A 5.9% engagement rate and 145 saves suggest viewers treated the video as advice worth keeping, not just scrolling past.</p></div>
+              <div class="insight"><h4>The length didn’t.</h4><p>The average viewer watched 34 seconds, about 10% of the video, and fewer than 1 in 100 finished it. The strongest advice needs to come in the first 30 seconds.</p></div>
+              <div class="insight"><h4>Reach came fast.</h4><p>Views peaked on posting day and leveled off by the next day, and the video brought in 23 new followers. A follow-up series could turn one-time viewers into an audience.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="numbers-sub">
+          <span class="mono muted">Who watched</span>
+          <h4>The audience</h4>
+        </div>
+        <div class="numbers-body">
+          <div class="numbers-main">
+            <dl class="stats">
+              <div><dt>Unique viewers</dt><dd>19.0K</dd><span>about 1.3 views per viewer</span></div>
+              <div><dt>New viewers</dt><dd>97%</dd></div>
+              <div><dt>Non-followers</dt><dd>100%</dd></div>
+              <div><dt>Female viewers</dt><dd>83%</dd><span>16% male</span></div>
+              <div><dt>Follower conversion</dt><dd>0.12%</dd><span>23 new followers ÷ 19.0K viewers</span></div>
+            </dl>
+            <div class="insights">
+              <span class="mono muted">What the data says</span>
+              <div class="insight"><h4>It reached strangers.</h4><p>Every viewer was a non-follower and 97% were seeing my content for the first time, so the video spread through recommendations, not my existing audience.</p></div>
+              <div class="insight"><h4>Reach didn’t become an audience.</h4><p>Only 0.12% of viewers followed. Combined with the short watch time, it points to a hook that works and a payoff that comes too late.</p></div>
+              <div class="insight"><h4>The audience is clear.</h4><p>83% of viewers were women, likely students facing the same decision. That shapes the next videos and which brand partners would fit.</p></div>
+              <p class="next"><strong>What I’d test next:</strong> split the story into a 3-part short series for the same audience, open each with the key takeaway, and end with a clear reason to follow. Success means a higher completion rate and follower conversion above 0.5%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="platform">
+      <div class="platform-head">
+        <div><span class="mono muted">Long-form video · Travel</span><h2 class="platform-name small">YouTube</h2></div>
+        ${handleLink(YOUTUBE,"platform-handle")}
+      </div>
+      <div class="yt-grid${VIDEOS.length===1?" single":""}">${videos}</div>
+    </section>
+
+    <p class="li-note">Also on <a href="${LINKEDIN.url}" target="_blank" rel="noopener">LinkedIn ↗</a></p>
+  </div>
+  <div class="wrap" style="padding-bottom:clamp(64px,8vw,120px)">${contactBlock()}</div>`;
+}
+
+function aboutBlock(){
+  return `<section class="block" id="about-sec">
+    <div>
+      <span class="mono muted">Background</span>
+      <figure class="bg-photo"><img src="cities-photo2.jpg" alt="Lauren photographing a gilt-framed painting on a gallery staircase in London"><figcaption class="caption mono muted">London, where I spent my first six months of university</figcaption></figure>
+    </div>
+    <div>
+      <p class="big">I’m drawn to work that helps people understand something, or someone, better, backed by careful research and clear writing.</p>
+      <div class="cities" aria-label="Cities I have lived in over the past three years">
+        <span>Seoul</span><span>London</span><span>Los Angeles</span><span>Chicago</span>
+      </div>
+      <p class="body">In the past three years I’ve lived in Seoul, London, Los Angeles and Chicago. Moving between cultures, languages and communities has given me a global, multicultural perspective, and taught me to adapt quickly, listen closely and see a story from more than one side.</p>
+      <p class="body">Before Northwestern, I lived in Los Angeles, where I reported for the Daily Trojan on stories like a Native American student powwow and a legally blind student magician. Today I study psychology at Northwestern, write for The Daily Northwestern, and consult on brand strategy for Chicago-area businesses, museums and nonprofits. I’m open to roles in marketing, communications, content and technical writing.</p>
+    </div>
+  </section>`;
+}
+
+function contactBlock(){
+  return `<section class="block" id="contact-sec" style="display:block">
+    <span class="mono muted">Contact</span>
+    <h2 class="contact-h" style="margin-top:16px">Have a place worth keeping around? Let’s talk.</h2>
+    <div class="contact-rows">
+      <div><span class="mono muted">Email</span><p class="v"><a href="mailto:laurenkim0902@gmail.com" id="email-text">laurenkim0902@gmail.com</a></p><button type="button" class="copy" id="copy-email">Copy email</button></div>
+      <div><span class="mono muted">LinkedIn</span><p class="v"><a href="https://www.linkedin.com/in/laurenkjkim/" target="_blank" rel="noopener">linkedin.com/in/laurenkjkim ↗</a></p></div>
+      <div><span class="mono muted">Based in</span><p class="v">Chicago, Illinois</p></div>
+    </div>
+  </section>`;
+}
+
+function caseStudy(p){
+  const others = PROJECTS.filter(x=>x.id!==p.id);
+  const quick = document.body.classList.contains("quick");
+  return `
+  <div class="wrap">
+    <div class="crumb">
+      <a class="mono" href="#work">← Work</a>
+      <div class="mode" role="group" aria-label="View mode">
+        <button type="button" id="btn-full" aria-pressed="${!quick}">Full story</button>
+        <button type="button" id="btn-quick" aria-pressed="${quick}">Quick look</button>
+      </div>
+    </div>
+    <div class="status-row"><span class="status-pill">${p.status==="upcoming" ? "Upcoming engagement" : "Current engagement"}</span></div>
+    <div class="case-title" style="padding-top:16px"><h1>${esc(p.title)}</h1></div>
+    <dl class="meta">
+      <div><dt class="mono">Client</dt><dd>${esc(p.client)}</dd></div>
+      <div><dt class="mono">Location</dt><dd>${esc(p.location)}</dd></div>
+      <div><dt class="mono">Category</dt><dd>${esc(p.type)}</dd></div>
+      <div><dt class="mono">In the community</dt><dd>${esc(p.since)}</dd></div>
+    </dl>
+  </div>
+  <div class="wrap">${media(p,"hero-media","Hero image or campaign film",false,true)}</div>
+  ${p.img && p.caption ? `<div class="wrap"><p class="caption mono muted">${esc(p.caption)}</p></div>` : ""}
+  <div class="wrap story">
+    <div><span class="mono muted">The story</span></div>
+    <div>
+      <p class="lead">${esc(p.lead)}</p>
+      <div class="roots-grid"><div class="roots"><span class="mono muted">The people behind it</span><p>${esc(p.people)}</p></div><div class="roots"><span class="mono muted">Community roots</span><p>${esc(p.community)}</p></div></div>
+      <div class="body full-only">${p.body.map(t=>`<p>${esc(t)}</p>`).join("")}</div>
+    </div>
+  </div>
+  ${p.extraImg && !p.peopleImg
+    ? `<div class="wrap full-only"><div class="extras">${[[p.extraImg,p.extraAlt,p.extraPos,p.extraCaption],[p.extraImg2,p.extraAlt2,p.extraPos2,p.extraCaption2]].filter(x=>x[0]).map(([src,alt,pos,cap])=>`<figure class="extra"><div class="media photo extra-media"><img src="${src}" alt="${esc(alt||"")}" style="object-position:${pos||"center"}"></div><figcaption class="caption mono muted">${esc(cap||"")}</figcaption></figure>`).join("")}</div></div>`
+    : p.peopleImg
+    ? (p.storeImg
+      ? `<div class="wrap full-only"><div class="duo">
+          <figure><div class="media photo people-media"><img src="${p.peopleImg}" alt="${esc(p.peopleAlt||"")}" style="object-position:${p.peoplePos||"center"}"></div><figcaption class="caption mono muted">${esc(p.peopleCaption||"")}</figcaption></figure>
+          <figure><div class="media photo store-media"><img src="${p.storeImg}" alt="${esc(p.storeAlt||"")}" style="object-position:${p.storePos||"center"}"></div><figcaption class="caption mono muted">${esc(p.storeCaption||"")}</figcaption></figure>
+        </div></div>`
+      : `<div class="wrap full-only"><div class="media photo people-media"><img src="${p.peopleImg}" alt="${esc(p.peopleAlt||"")}" style="object-position:${p.peoplePos||"center"}"></div>${p.peopleCaption?`<p class="caption mono muted">${esc(p.peopleCaption)}</p>`:""}</div>`)
+    : `<div class="wrap pair full-only">${media(p,"","Campaign image",true)}${media(p,"","Social / content")}</div>`}
+  <div class="wrap scope full-only">
+    <div><span class="mono muted">${p.status==="upcoming" ? "What I’ll focus on" : "What I’m doing"}</span></div>
+    <ul>${p.scope.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+  </div>
+  <div class="wrap full-only">${p.worldImg
+    ? `<div class="media photo world-media"><img src="${p.worldImg}" alt="${esc(p.worldAlt||"")}" style="object-position:${p.worldPos||"center"}"></div>${p.worldCaption?`<p class="caption mono muted">${esc(p.worldCaption)}</p>`:""}`
+    : media(p,"hero-media","Campaign in the world",true)}</div>
+  <div class="wrap"><p class="question">${esc(p.question)}</p></div>
+  <div class="wrap next">
+    <span class="mono muted">More work</span>
+    <div class="next-grid">${others.map(tile).join("")}</div>
+  </div>`;
+}
+
+function setMode(q){
+  document.body.classList.toggle("quick", q);
+  try{ localStorage.setItem("lk-quick", q ? "1" : "0"); }catch(e){}
+  const f=document.getElementById("btn-full"), k=document.getElementById("btn-quick");
+  if(f){ f.setAttribute("aria-pressed", String(!q)); k.setAttribute("aria-pressed", String(q)); }
+}
+
+function render(){
+  const app = document.getElementById("app");
+  const id = (location.hash||"").slice(1);
+  const p = PROJECTS.find(x=>x.id===id);
+  const setNav = k => { const n=document.querySelector(`[data-nav="${k}"]`); if(n) n.setAttribute("aria-current","page"); };
+  document.querySelectorAll("[data-nav]").forEach(a=>a.removeAttribute("aria-current"));
+  if(id==="writing" || id==="social" || id==="work"){
+    app.innerHTML = id==="writing" ? writing() : id==="social" ? social() : workPage();
+    window.scrollTo(0,0);
+    document.title = (id==="writing" ? "Writing" : id==="social" ? "Social" : "Work") + " · Lauren Kim";
+    setNav(id);
+  } else if(p){
+    app.innerHTML = caseStudy(p);
+    document.getElementById("btn-full").onclick=()=>setMode(false);
+    document.getElementById("btn-quick").onclick=()=>setMode(true);
+    window.scrollTo(0,0);
+    document.title = p.client + " · Lauren Kim";
+    setNav("work");
+  } else {
+    if(!app.querySelector(".me")) app.innerHTML = aboutPage();
+    document.title = "Lauren Kim";
+    setNav(id==="contact" ? "contact" : "about");
+    if(id==="contact") document.getElementById("contact-sec").scrollIntoView();
+    else window.scrollTo(0,0);
+  }
+}
+
+try{ if(localStorage.getItem("lk-quick")==="1") document.body.classList.add("quick"); }catch(e){}
+document.addEventListener("click", e=>{
+  const b = e.target.closest("#copy-email"); if(!b) return;
+  const done = ()=>{ b.textContent="Copied"; setTimeout(()=>b.textContent="Copy email",1800); };
+  const fallback = ()=>{ const r=document.createRange(); r.selectNodeContents(document.getElementById("email-text")); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent="Selected, press Copy"; };
+  try{ navigator.clipboard.writeText("laurenkim0902@gmail.com").then(done, fallback); }catch(err){ fallback(); }
+});
+window.addEventListener("hashchange", render);
+render();
+</script>
+
+</body></html>
